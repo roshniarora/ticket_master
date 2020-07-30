@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getCustomer, deleteCustomer } from '../../redux/actions/customerAction'
 import './Customers.css'
+import { Button } from 'antd'
 
 const Customers = (props) => {
     useEffect(() => {
@@ -38,6 +39,7 @@ const Customers = (props) => {
                         <th>Mobilel</th>
                         <th>Actions</th>
                         <th>Remove</th>
+                        {/* <th>Edit</th> */}
 
                     </tr>
 
@@ -54,6 +56,7 @@ const Customers = (props) => {
                                     <td> {ele.mobile} </td>
                                     <td> {ele.action}<button onClick={() => handleClick(ele._id)}>Show</button> </td>
                                     <td> {ele.remove}  <button onClick={() => handleDelete(ele._id)}> Remove </button> </td>
+                                    {/* <td> {ele.edit} <Button> Edit </Button></td> */}
                                 </tr>
                             )
                         })

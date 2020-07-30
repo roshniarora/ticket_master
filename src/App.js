@@ -15,6 +15,10 @@ import AddEmployee from './components/Employees/addEmployees'
 import employeeShow from './components/Employees/employeeShow'
 import Ticket from './components/Tickets/tickets'
 import AddTicket from './components/Tickets/addTicket'
+import EditCustomer from './components/customers/customerEdit'
+import EditDepartment from './components/Department/departmentEdit'
+import EditEmployee from './components/Employees/employeeEdit'
+import TicketShow from './components/Tickets/ticketShow'
 // import Customers from './components/customers/Customers'
 
 
@@ -66,13 +70,20 @@ function App(props) {
                     <Route path="/customers" component={Customers} exact />
                     <Route path="/users/addcustomers" component={AddCustomers} />
                     <Route path="/customers/:id" component={CustomerShow} />
+                    <Route path="/editcustomer" component={EditCustomer} />
                     <Route path="/departments" component={Departments} exact />
                     <Route path="/showdepartment/:id" component={DepartmentShow} />
+                    <Route path="/editdepartment" component={EditDepartment} />
+
                     <Route path="/employees" component={Employees} exact />
                     <Route path="/addemployee" component={AddEmployee} exact />
                     <Route path="/employees/:id" component={employeeShow} />
+                    <Route path="/editemployee" component={EditEmployee} />
                     <Route path="/tickets" component={Ticket} exact />
                     <Route path="/addtickets" component={AddTicket} />
+                    <Route path="/tickets/:id" component={TicketShow} exact />
+
+
                 </switch>
 
             </div>

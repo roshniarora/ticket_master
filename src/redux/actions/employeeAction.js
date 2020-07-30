@@ -39,6 +39,17 @@ const showEmployee = (id) => (dispatch) => {
         })
 }
 
+const editEmployee = (id, data, history) => (dispatch) => {
+    console.log(id, "redszz")
+    axios.put(`/employees/${id}`, data)
+        .then(response => {
+            console.log(response.data, "post employees")
+            if (response.data) return dispatch(history.push('/employees')
+            )
+        }).catch(err => console.log(err, "errors"))
+
+}
+
 const deleteEmployee = (id) => (dispatch) => {
     console.log(id, "redux id")
     axios.delete(`/employees/${id}`)
@@ -53,7 +64,8 @@ export {
     getEmployees,
     postEmployeeDetails,
     showEmployee,
-    deleteEmployee
+    deleteEmployee,
+    editEmployee
 
 
 }

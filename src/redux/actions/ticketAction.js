@@ -25,8 +25,29 @@ const postTickets = (data, history) => (dispatch) => {
         }).catch(err => console.log(err, "errors"))
 }
 
+const showTicketsByID = (id) => (dispatch) => {
+    console.log(id, "redux id")
+    axios.get(`/tickets/${id}`)
+        .then(res => {
+            console.log(res.data, "show ticket")
+            dispatch(ticketDispatch(types.SHOW_TICKETID, res.data))
+
+        })
+}
+
+const deleteTicket = (id) => (dispatch) => {
+    console.log(id, "redux id")
+    axios.delete(`/tickets/${id}`)
+        .then(res => {
+            console.log(res.data, "delete ticket")
+            dispatch(getTickets())
+        })
+}
+
 export {
     getTickets,
-    postTickets
+    postTickets,
+    showTicketsByID,
+    deleteTicket
 
 }

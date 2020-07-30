@@ -9,7 +9,7 @@ const customerDispatch = (cust, data) => {
 const getCustomer = () => (dispatch) => {
     axios.get('/customers')
         .then(res => {
-            console.log(res.data, 'cusstomer')
+            // console.log(res.data, 'cusstomer')
             dispatch(customerDispatch(types.GET_CUSTOMERS, res.data))
 
 
@@ -20,7 +20,7 @@ const getCustomer = () => (dispatch) => {
 const postCustomerDetails = (data, history) => (dispatch) => {
     axios.post('/customers', data)
         .then(response => {
-            console.log(response.data, "post Customers")
+            // console.log(response.data, "post Customers")
             if (response.data) return dispatch(history.push('/customers')
             )
         }).catch(err => console.log(err, "errors"))
@@ -37,6 +37,16 @@ const getCustomerById = (id) => (dispatch) => {
         })
 }
 
+const editCustomer = (id, data, history) => (dispatch) => {
+    axios.put(`/customers/${id}`, data)
+        .then(response => {
+            console.log(response.data, "post Customers")
+            if (response.data) return dispatch(history.push('/customers')
+            )
+        }).catch(err => console.log(err, "errors"))
+
+}
+
 const deleteCustomer = (id) => (dispatch) => {
     console.log(id, "redux id")
     axios.delete(`/customers/${id}`)
@@ -49,6 +59,9 @@ export {
     getCustomer,
     postCustomerDetails,
     getCustomerById,
-    deleteCustomer
+    deleteCustomer,
+    editCustomer
+
+
 
 }

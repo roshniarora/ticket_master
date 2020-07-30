@@ -34,6 +34,16 @@ const getDepartmentById = (id) => (dispatch) => {
         })
 }
 
+const editDepartment = (id, data, history) => (dispatch) => {
+    axios.put(`/departments/${id}`, data)
+        .then(response => {
+            console.log(response.data, "put depart")
+            if (response.data) return dispatch(history.push('/departments')
+            )
+        }).catch(err => console.log(err, "errors"))
+
+}
+
 const removeDepartment = (id) => (dispatch) => {
     console.log(id, "redux id")
     axios.delete(`/departments/${id}`)
@@ -47,6 +57,7 @@ export {
     postDepartment,
     getdepartment,
     getDepartmentById,
-    removeDepartment
+    removeDepartment,
+    editDepartment
 
 }

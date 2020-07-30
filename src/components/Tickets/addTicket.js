@@ -17,7 +17,7 @@ const AddTicket = (props) => {
         props.getEmployees()
 
     }, [])
-    console.log(props.departments, "ADD")
+    // console.log(props.departments, "ADD")
     const { TextArea } = Input;
     const { Option } = Select;
 
@@ -35,16 +35,21 @@ const AddTicket = (props) => {
                     employees: [],
                     message: '',
                     priority: '',
-
-
-
                 }
-
                 }
                 onSubmit={values => {
-                    console.log("submit", values)
-
-                    props.postTickets(values, props.history)
+                    const newData = []
+                    values.employees.map(ele => newData.push({ _id: ele }))
+                    const cust = {
+                        employees: newData,
+                        code: values.code,
+                        customer: values.customer,
+                        department: values.department,
+                        message: values.message,
+                        priority: values.priority
+                    }
+                    console.log("submit", cust)
+                    props.postTickets(cust, props.history)
                 }}
             >
 
@@ -67,7 +72,7 @@ const AddTicket = (props) => {
                         </Select>
 
                         <label>Employee</label>
-                        <Select placeholder="select Department" mode="multiple" style={{ width: "100%" }} onChange={(value) => setFieldValue("employees", { _id: value })}>
+                        <Select placeholder="select Department" mode="multiple" style={{ width: "100%" }} onChange={(value) => setFieldValue("employees", value)}>
                             {children}
                         </Select>
 
@@ -98,7 +103,8 @@ const AddTicket = (props) => {
 const mapStateToProps = (state) => ({
     departments: state.departments.departments,
     customers: state.customers.customers,
-    employees: state.employees.employeess
+    employees: state.employees.employeess,
+    // ticket: state.tickets.tickets
 })
 
 export default connect(mapStateToProps, { getdepartment, getCustomer, getEmployees, postTickets })(withRouter(AddTicket))

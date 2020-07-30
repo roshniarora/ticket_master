@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { Button } from 'antd'
 import { getDepartmentById } from '../../redux/actions/departmentAction'
 
 const DepartmentShow = (props) => {
@@ -10,10 +11,15 @@ const DepartmentShow = (props) => {
     }, [])
     // console.log(props && props.id, "idd")
 
+    const handleClick = (id) => {
+        localStorage.setItem("depart_id", id)
+        props.history.push(`/editdepartment`)
+    }
     return (
         <div>
             <h1> Department Details </h1>
             <div> Name :  {props.department?.name} </div>
+            <div><Button onClick={() => handleClick(props.department?._id)}>Edit</Button> </div>
         </div>
     )
 }
